@@ -8,6 +8,10 @@ type Args = {
 
 export default async function Command(props: Args) {
   const { url, name, description } = props.arguments;
+  if (!url.startsWith("https://www.tldraw.com/r/")) {
+    showFailureToast("Invalid canvas URL, must start with https://www.tldraw.com/r/");
+    return;
+  }
   if (await LocalStorage.getItem(name)) {
     showFailureToast(`Canvas "${name}" already exists.`);
     return;
