@@ -2,13 +2,10 @@ import { LocalStorage, showHUD, Clipboard } from "@raycast/api";
 import { showFailureToast } from "@raycast/utils";
 import { nanoid } from "nanoid";
 import fetch from "node-fetch";
-import { CanvasValues, canvasURL } from "./shared";
+import { CanvasDetails, CanvasValues, canvasURL } from "./shared";
 
 type Args = {
-  arguments: {
-    name: string;
-    description?: string;
-  };
+  arguments: CanvasDetails;
 };
 
 export default async function Command(props: Args) {
