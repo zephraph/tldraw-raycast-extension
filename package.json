@@ -32,6 +32,33 @@
       ]
     },
     {
+      "name": "add-existing-canvas",
+      "title": "Add an existing canvas",
+      "subtitle": "tldraw",
+      "description": "Adds an existing canvas to your list of saved canvases",
+      "mode": "no-view",
+      "arguments": [
+        {
+          "name": "url",
+          "type": "text",
+          "required": true,
+          "placeholder": "https://www.tldraw.com/..."
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "required": true,
+          "placeholder": "name..."
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "required": false,
+          "placeholder": "description..."
+        }
+      ]
+    },
+    {
       "name": "list-canvases",
       "title": "List canvases",
       "subtitle": "tdraw",

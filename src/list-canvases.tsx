@@ -1,6 +1,6 @@
 import { ActionPanel, List, Action, LocalStorage, Form, showHUD, PopToRootType } from "@raycast/api";
 import { showFailureToast, usePromise } from "@raycast/utils";
-import { CanvasValues, canvasURL } from "./shared";
+import { CanvasValues } from "./shared";
 
 export default function Command() {
   const { isLoading, data, revalidate } = usePromise(
@@ -13,15 +13,15 @@ export default function Command() {
   return (
     <List isLoading={isLoading}>
       {data &&
-        data.map(([name, { id, description }]) => (
+        data.map(([name, { url, description }]) => (
           <List.Item
-            key={id}
+            key={name}
             title={name}
             subtitle={description}
             actions={
               <ActionPanel>
-                <Action.OpenInBrowser title="Open in Browser" url={canvasURL(id)} />
-                <Action.CopyToClipboard title="Copy Canvas URL" content={canvasURL(id)} />
+                <Action.OpenInBrowser title="Open in Browser" url={url} />
+                <Action.CopyToClipboard title="Copy Canvas URL" content={url} />
                 <Action.Push
                   title="Edit Canvas Details"
                   target={
@@ -35,7 +35,7 @@ export default function Command() {
                                 await LocalStorage.removeItem(name);
                               }
                               return Promise.all([
-                                LocalStorage.setItem(newName, JSON.stringify({ id, ...others })),
+                                LocalStorage.setItem(newName, JSON.stringify({ url, ...others })),
                                 revalidate(),
                                 showHUD(`Canvas "${newName}" Updated`, {
                                   clearRootSearch: true,

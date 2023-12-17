@@ -1,6 +1,6 @@
 export interface CanvasValues {
-  id: string;
   description?: string;
+  url: string;
 }
 
 export interface CanvasDetails {
